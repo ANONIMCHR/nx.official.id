@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Official links and music.">
+  <title>NX Official — Bio Link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/config.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Memuat halaman">
+    <div class="loader-content">
+      <div class="loader-mark" aria-hidden="true">NX</div>
+      <div class="loader-spinner" aria-hidden="true"></div>
+      <p class="loader-caption">INITIALIZING EXPERIENCE</p>
+      <div class="loader-track"><span id="loader-fill"></span></div>
+      <div class="loader-percent"><span id="loader-percent">0</span><span>%</span></div>
+    </div>
+  </div>
+
+  <main class="page-shell" id="main-content">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <section class="profile-card" aria-labelledby="profile-name">
+      <div class="avatar-frame">
+        <div class="avatar-inner">
+          <img id="avatar" class="avatar" src="" alt="Foto profil" width="112" height="112">
+        </div>
+      </div>
+      <p class="eyebrow" id="profile-eyebrow">OFFICIAL PROFILE</p>
+      <h1 id="profile-name">NX OFFICIAL</h1>
+      <p class="profile-description" id="profile-description">One place for everything.</p>
+      <div class="status-line"><span class="status-dot"></span><span>ONLINE • CONNECTED</span></div>
+    </section>
+
+    <nav class="links-list" id="links-list" aria-label="Tautan resmi"></nav>
+
+    <section class="music-card" aria-label="Pemutar musik">
+      <div class="music-art" id="music-art" aria-hidden="true">
+        <div class="record"><span></span></div>
+      </div>
+      <div class="music-info">
+        <p class="music-kicker">NOW PLAYING</p>
+        <h2 id="track-title">No track selected</h2>
+        <div class="music-progress-wrap">
+          <button class="progress-hitarea" id="seek-control" type="button" aria-label="Lompat ke posisi lagu">
+            <span class="progress-track"><span id="progress-fill"></span></span>
+          </button>
+          <div class="time-row"><span id="current-time">0:00</span><span id="duration">0:00</span></div>
+        </div>
+      </div>
+      <button class="play-button" id="play-button" type="button" aria-label="Putar lagu" aria-pressed="false">
+        <span class="play-icon" aria-hidden="true">▶</span>
+      </button>
+      <audio id="audio-player" preload="metadata"></audio>
+    </section>
+
+    <footer class="site-footer" id="site-footer">BY NX OFFICIAL TEAM PROJECT 2026</footer>
+  </main>
+</body>
+</html>
