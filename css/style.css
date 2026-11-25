@@ -48,7 +48,7 @@ body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #eee; box-shadow: 0 0 10px #fff; }
 .links-list { display: grid; width: 100%; gap: 13px; margin-top: 36px; }
 .link-button {
-  --link-angle: 0deg; position: relative; isolation: isolate; display: flex; align-items: center;
+  position: relative; isolation: isolate; display: flex; align-items: center;
   min-height: 61px; padding: 0 19px; overflow: hidden; border: 1px solid rgba(255,255,255,.13);
   border-radius: 15px; background: linear-gradient(110deg, rgba(28,28,28,.96), rgba(13,13,13,.96));
   color: #f4f4f4; text-decoration: none; transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease;
@@ -56,14 +56,13 @@ body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 }
 .link-button::before {
   content: ""; position: absolute; z-index: -2; inset: -150%; opacity: .85;
-  background: conic-gradient(from var(--link-angle), #fff, #777, #222, #aaa, #fff);
-  animation: edge-spin 4s linear infinite;
+  background: conic-gradient(#fff, #777, #222, #aaa, #fff);
+  animation: edge-spin 8s linear infinite;
 }
 .link-button::after { content: ""; position: absolute; z-index: -1; inset: 1px; border-radius: 14px; background: linear-gradient(110deg, #191919, #0d0d0d); }
-@keyframes edge-spin { to { --link-angle: 360deg; } }
-@property --link-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes edge-spin { to { transform: rotate(360deg); } }
 .link-button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.65); box-shadow: 0 9px 32px rgba(255,255,255,.12), 0 0 18px rgba(255,255,255,.08); }
-.link-button:hover::before { animation-duration: 1.7s; }
+.link-button:hover::before { animation-duration: 4s; }
 .link-button:active { transform: scale(.975); }
 .link-icon { display: grid; place-items: center; width: 29px; margin-right: 14px; color: #eee; font-size: 17px; }
 .link-label { flex: 1; font-size: 11px; font-weight: 700; letter-spacing: .16em; }
