@@ -26,6 +26,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset:
   margin: 0 auto; padding: 66px 0 28px; opacity: 0; transform: translateY(18px);
   transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
 }
+.snowfall { position: fixed; z-index: 5; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 .ambient { position: fixed; z-index: -1; width: 340px; height: 340px; border-radius: 50%; filter: blur(90px); opacity: .11; pointer-events: none; }
 .ambient-one { top: 8%; left: -220px; background: #fff; }
@@ -55,19 +56,25 @@ body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 }
 .link-button::before {
   content: ""; position: absolute; z-index: -2; inset: -150%; opacity: .85;
-  background: conic-gradient(from var(--link-angle), transparent 0 68%, rgba(255,255,255,.85) 76%, transparent 83% 100%);
-  animation: edge-spin 5s linear infinite;
+  background: conic-gradient(from var(--link-angle), #fff, #777, #222, #aaa, #fff);
+  animation: edge-spin 4s linear infinite;
 }
 .link-button::after { content: ""; position: absolute; z-index: -1; inset: 1px; border-radius: 14px; background: linear-gradient(110deg, #191919, #0d0d0d); }
 @keyframes edge-spin { to { --link-angle: 360deg; } }
 @property --link-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-.link-button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.42); box-shadow: 0 9px 30px rgba(255,255,255,.08); }
+.link-button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.65); box-shadow: 0 9px 32px rgba(255,255,255,.12), 0 0 18px rgba(255,255,255,.08); }
+.link-button:hover::before { animation-duration: 1.7s; }
 .link-button:active { transform: scale(.975); }
 .link-icon { display: grid; place-items: center; width: 29px; margin-right: 14px; color: #eee; font-size: 17px; }
 .link-label { flex: 1; font-size: 11px; font-weight: 700; letter-spacing: .16em; }
 .link-arrow { color: #777; font-size: 16px; transition: transform .2s ease, color .2s ease; }
 .link-button:hover .link-arrow { color: #fff; transform: translate(3px,-2px); }
-.link-button.is-active { border-color: rgba(255,255,255,.8); box-shadow: 0 0 24px rgba(255,255,255,.16), inset 0 0 18px rgba(255,255,255,.04); }
+.link-button.is-active { border-color: rgba(255,255,255,.95); animation: button-burst .65s ease-out; }
+@keyframes button-burst {
+  0% { box-shadow: 0 0 0 rgba(255,255,255,0), inset 0 0 0 rgba(255,255,255,0); }
+  35% { box-shadow: 0 0 32px rgba(255,255,255,.62), 0 0 58px rgba(255,255,255,.3), inset 0 0 22px rgba(255,255,255,.2); }
+  100% { box-shadow: 0 0 17px rgba(255,255,255,.22), 0 0 30px rgba(255,255,255,.1), inset 0 0 10px rgba(255,255,255,.04); }
+}
 .music-card {
   display: flex; align-items: center; gap: 13px; width: 100%; margin-top: 26px; padding: 14px;
   border: 1px solid var(--line); border-radius: 17px; background: var(--panel);
@@ -85,8 +92,8 @@ body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 .progress-track { display: block; height: 3px; overflow: hidden; border-radius: 9px; background: #3a3a3a; }
 #progress-fill { display: block; width: 0%; height: 100%; border-radius: inherit; background: #eee; transition: width .12s linear; }
 .time-row { display: flex; justify-content: space-between; margin-top: 3px; color: #777; font: 8px var(--mono); }
-.play-button { display: grid; flex: 0 0 37px; place-items: center; width: 37px; height: 37px; border: 1px solid #555; border-radius: 50%; background: #eee; color: #111; cursor: pointer; transition: transform .2s ease, background .2s ease; }
-.play-button:hover { transform: scale(1.07); background: #fff; }
+.play-button { display: grid; flex: 0 0 37px; place-items: center; width: 37px; height: 37px; border: 1px solid #555; border-radius: 50%; background: #eee; color: #111; cursor: pointer; transition: transform .2s ease, background .2s ease, box-shadow .25s ease; }
+.play-button:hover { transform: scale(1.07); background: #fff; box-shadow: 0 0 22px rgba(255,255,255,.5), 0 0 38px rgba(255,255,255,.25); }
 .play-button:active { transform: scale(.92); }
 .play-icon { margin-left: 2px; font-size: 12px; }
 .site-footer { margin-top: auto; padding-top: 48px; color: #656565; text-align: center; font: 9px var(--mono); letter-spacing: .12em; }
@@ -96,8 +103,9 @@ body.is-ready .page-shell { opacity: 1; transform: translateY(0); }
 }
 .preloader.is-hidden { opacity: 0; visibility: hidden; transform: translateY(-10px); }
 .loader-content { display: flex; flex-direction: column; align-items: center; width: min(260px, calc(100% - 48px)); }
-.loader-mark { margin-bottom: 25px; color: #f4f4f4; font-size: 34px; font-weight: 800; letter-spacing: .18em; }
-.loader-spinner { width: 25px; height: 25px; border: 2px solid #333; border-top-color: #eee; border-radius: 50%; animation: spinner .8s linear infinite; }
+.loader-mark { margin-bottom: 25px; color: #f4f4f4; font-size: 34px; font-weight: 800; letter-spacing: .18em; text-shadow: 0 0 28px rgba(255,255,255,.35); animation: loader-glow 2s ease-in-out infinite alternate; }
+@keyframes loader-glow { to { text-shadow: 0 0 34px rgba(255,255,255,.7); } }
+.loader-spinner { width: 28px; height: 28px; border: 2px solid #333; border-top-color: #fff; border-right-color: #aaa; border-radius: 50%; box-shadow: 0 0 18px rgba(255,255,255,.18); animation: spinner .8s linear infinite; }
 @keyframes spinner { to { transform: rotate(360deg); } }
 .loader-caption { margin: 17px 0 13px; color: #777; font: 9px var(--mono); letter-spacing: .18em; }
 .loader-track { width: 100%; height: 2px; overflow: hidden; background: #292929; }
