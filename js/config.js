@@ -14,8 +14,8 @@ window.BIO_CONFIG = {
     { label: "CONTACT ADMIN", url: "https://wa.me/", icon: "✉" }
   ],
   music: {
-    title: "Your Track Title",
-    url: "./music.mp3"
+    title: "Amnesia - Al Ghazali",
+    url: "https://files.catbox.moe/ok9se9.mp3"
   },
   preloaderDuration: 1800,
   footerText: "BY NX OFFICIAL TEAM PROJECT 2026"
