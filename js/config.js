@@ -1,10 +1,10 @@
 /* Ubah semua konten halaman dari file ini. */
 window.BIO_CONFIG = {
-  avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
-  fallbackAvatarUrl: "https://placehold.co/400x400/171717/eeeeee?text=NX",
+  avatarUrl: "https://files.catbox.moe/o9m88b.png",
+  fallbackAvatarUrl: "https://files.catbox.moe/o9m88b.png",
   profileEyebrow: "OFFICIAL PROFILE",
   profileName: "NX OFFICIAL",
-  profileDescription: "One place for everything.",
+  profileDescription: "WELCOME TO NX OFFICIAL BIO",
   links: [
     { label: "GRUB WHATSAPP", url: "https://chat.whatsapp.com/", icon: "◈" },
     { label: "TELEGRAM CHANNEL", url: "https://t.me/", icon: "➤" },
