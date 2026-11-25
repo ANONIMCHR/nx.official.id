@@ -36,7 +36,7 @@
       snowCanvas.width = Math.round(width * pixelRatio);
       snowCanvas.height = Math.round(height * pixelRatio);
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-      const count = Math.min(110, Math.max(35, Math.round(width / 11)));
+      const count = Math.min(70, Math.max(30, Math.round(width / 20)));
       flakes.length = 0;
       for (let index = 0; index < count; index += 1) {
         flakes.push({
@@ -66,12 +66,9 @@
 
         context.beginPath();
         context.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
-        context.shadowColor = "rgba(210, 230, 255, 0.65)";
-        context.shadowBlur = flake.radius * 3;
         context.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
         context.fill();
       });
-      context.shadowBlur = 0;
       frameId = window.requestAnimationFrame(draw);
     };
 
