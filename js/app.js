@@ -16,6 +16,81 @@
   const currentTimeLabel = $("#current-time");
   const durationLabel = $("#duration");
   const musicCard = $(".music-card");
+  const snowCanvas = $("#snowfall");
+
+  function setupSnow() {
+    if (!snowCanvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const context = snowCanvas.getContext("2d");
+    if (!context) return;
+
+    const flakes = [];
+    let width = 0;
+    let height = 0;
+    let frameId = 0;
+    const random = (min, max) => Math.random() * (max - min) + min;
+
+    const resize = () => {
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      snowCanvas.width = Math.round(width * pixelRatio);
+      snowCanvas.height = Math.round(height * pixelRatio);
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      const count = Math.min(110, Math.max(35, Math.round(width / 11)));
+      flakes.length = 0;
+      for (let index = 0; index < count; index += 1) {
+        flakes.push({
+          x: random(0, width),
+          y: random(0, height),
+          radius: random(0.7, 2.2),
+          speed: random(0.35, 1.15),
+          drift: random(-0.3, 0.3),
+          phase: random(0, Math.PI * 2),
+          opacity: random(0.25, 0.8)
+        });
+      }
+    };
+
+    const draw = () => {
+      context.clearRect(0, 0, width, height);
+      flakes.forEach((flake) => {
+        flake.phase += 0.012;
+        flake.y += flake.speed;
+        flake.x += flake.drift + Math.sin(flake.phase) * 0.25;
+        if (flake.y > height + flake.radius) {
+          flake.y = -flake.radius;
+          flake.x = random(0, width);
+        }
+        if (flake.x < -flake.radius) flake.x = width + flake.radius;
+        if (flake.x > width + flake.radius) flake.x = -flake.radius;
+
+        context.beginPath();
+        context.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
+        context.shadowColor = "rgba(210, 230, 255, 0.65)";
+        context.shadowBlur = flake.radius * 3;
+        context.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+        context.fill();
+      });
+      context.shadowBlur = 0;
+      frameId = window.requestAnimationFrame(draw);
+    };
+
+    const start = () => {
+      if (!document.hidden && !frameId) frameId = window.requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+      frameId = 0;
+    };
+
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else start();
+    });
+    start();
+  }
 
   const setText = (selector, value) => {
     const element = $(selector);
@@ -142,8 +217,7 @@
       const timeProgress = Math.min(1, elapsed / minimum);
       const assetsReady = document.readyState === "complete";
       const target = assetsReady ? Math.min(100, Math.round(timeProgress * 100)) : Math.min(92, Math.round(timeProgress * 92));
-      displayed += Math.max(0.25, (target - displayed) * 0.12);
-      displayed = Math.min(100, displayed);
+      displayed += (target - displayed) * 0.12;
       const value = Math.floor(displayed);
       loaderFill.style.width = `${value}%`;
       loaderPercent.textContent = String(value);
@@ -166,5 +240,6 @@
   setupProfile();
   renderLinks();
   setupMusic();
+  setupSnow();
   runPreloader();
 })();
