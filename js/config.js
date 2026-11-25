@@ -17,6 +17,6 @@ window.BIO_CONFIG = {
     title: "Amnesia - Al Ghazali",
     url: "https://files.catbox.moe/ok9se9.mp3"
   },
-  preloaderDuration: 1800,
+  preloaderDuration: 15000,
   footerText: "BY NX OFFICIAL TEAM PROJECT 2026"
 };
