@@ -6,12 +6,12 @@ window.BIO_CONFIG = {
   profileName: "NX OFFICIAL",
   profileDescription: "WELCOME TO NX OFFICIAL BIO",
   links: [
-    { label: "GRUB WHATSAPP", url: "https://chat.whatsapp.com/", icon: "◈" },
+    { label: "GRUB WHATSAPP", url: "https://chat.whatsapp.com/DnU1viSiY7OAqoQSLmwg0z", icon: "◈" },
     { label: "TELEGRAM CHANNEL", url: "https://t.me/", icon: "➤" },
     { label: "INSTAGRAM", url: "https://instagram.com/", icon: "◎" },
-    { label: "TIKTOK", url: "https://tiktok.com/", icon: "♪" },
+    { label: "TIKTOK", url: "https://www.tiktok.com/@w4hxareaofficial?_r=1&_t=ZS-9BifY0GUnYa", icon: "♪" },
     { label: "YOUTUBE", url: "https://youtube.com/", icon: "▷" },
-    { label: "CONTACT ADMIN", url: "https://wa.me/", icon: "✉" }
+    { label: "CONTACT ADMIN CC", url: "https://wa.me/6282210954019", icon: "✉" }
   ],
   music: {
     title: "Amnesia - Al Ghazali",
